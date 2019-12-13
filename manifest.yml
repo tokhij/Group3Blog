@@ -1,0 +1,8 @@
+applications:
+  - name: zcw-group3blogproject
+    memory: 1G
+    instances: 1
+    buildpack: java_buildpack
+    path: target/group3blog-0.0.1-SNAPSHOT.jar
+    services:
+      - zcw-group3blog-db
