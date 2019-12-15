@@ -9,6 +9,8 @@ import org.springframework.security.config.annotation.authentication.builders.Au
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 
 @EnableWebSecurity
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
@@ -18,14 +20,14 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Bean(BeanIds.AUTHENTICATION_MANAGER)
     @Override
-    public AuthenticationManager authenticationManager() throws Exception{
+    public AuthenticationManager authenticationManagerBean() throws Exception{
         return super.authenticationManagerBean();
     }
 
-
     @Override
     public void configure(HttpSecurity httpSecurity) throws Exception {
-        httpSecurity.csrf().disable().authorizeRequests()
+        httpSecurity.csrf().disable()
+                .authorizeRequests()
                 .antMatchers("/api/auth/**")
                 .permitAll()
                 .anyRequest()
@@ -35,6 +37,12 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Autowired
     public void configureGlobal(AuthenticationManagerBuilder authenticationManagerBuilder) throws Exception {
-        authenticationManagerBuilder.userDetailsService(userDetailsService);
+        authenticationManagerBuilder.userDetailsService(userDetailsService).passwordEncoder(passwordEncoder());
+    }
+
+
+    @Bean
+    PasswordEncoder passwordEncoder(){
+        return new BCryptPasswordEncoder();
     }
 }

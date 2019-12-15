@@ -9,7 +9,7 @@ import java.time.Instant;
 public class Post {
 
 @Id
-@GeneratedValue
+@GeneratedValue(strategy = GenerationType.IDENTITY)
 private Long id;
 @Column
 private String title;

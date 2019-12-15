@@ -10,9 +10,8 @@ import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.PostMapping;
-
 
 @Service
 public class AuthService {
@@ -21,23 +20,29 @@ public class AuthService {
     private UserRepository userRepository;
 
     @Autowired
+    private PasswordEncoder passwordEncoder;
+
+    @Autowired
     private AuthenticationManager authenticationManager;
 
     @Autowired
     JwtProvider jwtProvider;
 
-
-
     public void signup(RegisterRequest registerRequest){
         User newUser = new User();
         newUser.setUsername(registerRequest.getUsername());
-        newUser.setPassword(registerRequest.getPassword());
+        newUser.setPassword( encodePassword(registerRequest.getPassword()));
         newUser.setEmail(registerRequest.getEmail());
+        userRepository.save(newUser);
     }
 
+    private String encodePassword(String password) {
+        return passwordEncoder.encode(password);
+    }
 
     public String login(LoginRequest loginRequest){
-        Authentication authenticate = authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(loginRequest.getUsername(), loginRequest.getPassword()));
+        Authentication authenticate = authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(loginRequest.getUsername(),
+                loginRequest.getPassword()));
         SecurityContextHolder.getContext().setAuthentication(authenticate);
         return jwtProvider.generateToken(authenticate);
     }
