@@ -16,7 +16,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 
 @Service
 public class AuthService {
-
     @Autowired
     private UserRepository userRepository;
     @Autowired
@@ -30,7 +29,6 @@ public class AuthService {
         newUser.setPassword(registerRequest.getPassword());
         newUser.setEmail(registerRequest.getEmail());
     }
-
 
     public String login(LoginRequest loginRequest){
         Authentication authenticate = authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(loginRequest.getUsername(), loginRequest.getPassword()));
