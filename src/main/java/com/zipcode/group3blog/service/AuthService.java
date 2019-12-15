@@ -19,14 +19,10 @@ public class AuthService {
 
     @Autowired
     private UserRepository userRepository;
-
     @Autowired
     private AuthenticationManager authenticationManager;
-
     @Autowired
     JwtProvider jwtProvider;
-
-
 
     public void signup(RegisterRequest registerRequest){
         User newUser = new User();
