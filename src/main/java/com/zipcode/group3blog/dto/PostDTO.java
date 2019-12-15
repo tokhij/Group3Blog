@@ -1,6 +1,6 @@
-package com.zipcode.group3blog.group3blog.dto;
+package com.zipcode.group3blog.dto;
 
-public class postDTO {
+public class PostDTO {
 
 private Long id;
 private String title;

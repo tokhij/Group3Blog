@@ -1,4 +1,4 @@
-package com.zipcode.group3blog.group3blog.model;
+package com.zipcode.group3blog.model;
 
 
 import javax.persistence.Column;

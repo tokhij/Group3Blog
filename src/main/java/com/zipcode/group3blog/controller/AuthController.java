@@ -1,7 +1,7 @@
-package com.zipcode.group3blog.group3blog.controller;
+package com.zipcode.group3blog.controller;
 
-import com.zipcode.group3blog.group3blog.dto.RegisterRequest;
-import com.zipcode.group3blog.group3blog.service.AuthService;
+import com.zipcode.group3blog.dto.RegisterRequest;
+import com.zipcode.group3blog.service.AuthService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -22,5 +22,7 @@ public class AuthController {
         return new ResponseEntity(HttpStatus.OK);
 
     }
+
+
 
 }

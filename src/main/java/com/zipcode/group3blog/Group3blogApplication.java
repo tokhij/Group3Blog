@@ -1,4 +1,4 @@
-package com.zipcode.group3blog.group3blog;
+package com.zipcode.group3blog;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

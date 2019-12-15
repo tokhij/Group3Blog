@@ -1,4 +1,4 @@
-package com.zipcode.group3blog.group3blog.configuration;
+package com.zipcode.group3blog.configuration;
 
 import com.zaxxer.hikari.HikariConfig;
 import com.zaxxer.hikari.HikariDataSource;
