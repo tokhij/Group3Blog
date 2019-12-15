@@ -1,7 +1,6 @@
 package com.zipcode.group3blog.dto;
 
 public class RegisterRequest {
-
     private String username;
     private String password;
     private String email;

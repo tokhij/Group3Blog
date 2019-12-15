@@ -1,12 +1,10 @@
 package com.zipcode.group3blog.dto;
 
 public class PostDTO {
-
 private Long id;
 private String title;
 private String content;
 private String username;
-
 
     public Long getId() {
         return id;

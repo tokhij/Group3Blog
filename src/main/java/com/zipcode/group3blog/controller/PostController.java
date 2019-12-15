@@ -11,13 +11,12 @@ import java.util.List;
 @RestController
 @RequestMapping("/api/posts/")
 public class PostController {
-
 //    @Autowired
 //    private PostService postService;
 //
 //    @PostMapping
-//    public ResponseEntity createPost(@RequestBody PostDTO postDto) {
-//        postService.createPost(postDto);
+//    public ResponseEntity createPost(@RequestBody PostDTO postDTO) {
+//        postService.createPost(postDTO);
 //        return new ResponseEntity(HttpStatus.OK);
 //    }
 //

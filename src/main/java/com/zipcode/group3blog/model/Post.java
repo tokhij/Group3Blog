@@ -7,7 +7,6 @@ import java.time.Instant;
 @Entity
 @Table
 public class Post {
-
 @Id
 @GeneratedValue(strategy = GenerationType.IDENTITY)
 private Long id;

@@ -13,7 +13,6 @@ import java.security.Key;
 
 @Service
 public class JwtProvider {
-
     private Key key;
 
     @PostConstruct
