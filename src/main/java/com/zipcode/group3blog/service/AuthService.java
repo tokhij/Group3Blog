@@ -13,7 +13,7 @@ public class AuthService {
 
     @Autowired
     private UserRepository userRepository;
-    private
+
 
 
     public void signup(RegisterRequest registerRequest){
