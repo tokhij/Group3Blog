@@ -1,11 +1,10 @@
 package com.zipcode.group3blog.model;
 
-
 import javax.persistence.*;
 
 @Entity
 @Table
-public class User {
+public class Users {
 @Id
 @GeneratedValue(strategy = GenerationType.IDENTITY)
 private long id;
@@ -29,7 +28,7 @@ private String email;
         return username;
     }
 
-    public void setUsername(String username) {
+    public void setUsersName(String username) {
         this.username = username;
     }
 

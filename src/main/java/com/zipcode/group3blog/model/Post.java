@@ -2,6 +2,7 @@ package com.zipcode.group3blog.model;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotEmpty;
 import java.time.Instant;
 
 @Entity
@@ -14,6 +15,7 @@ private Long id;
 private String title;
 @Lob
 @Column
+@NotEmpty
 private String content;
 @Column
 private Instant createdOn;
