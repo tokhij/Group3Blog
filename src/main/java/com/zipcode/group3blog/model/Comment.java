@@ -1,23 +1,30 @@
 package com.zipcode.group3blog.model;
 
-import javax.persistence.Entity;
-import javax.persistence.ManyToOne;
+import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
 import java.time.Instant;
 
 @Entity
 public class Comment {
-    private Long id;
+    @Id
+    @GeneratedValue
+    private Long commentId;
+    @Column
     private String content;
+    @Column
     private Instant createdOn;
+    @Column
     private Instant updatedOn;
+    @Column
+    @NotBlank
     private String userId;
     @ManyToOne
     private Long postId;
 
 
 
-    public Long getId() {
-        return id;
+    public Long getCommentId() {
+        return commentId;
     }
 
     public String getContent() {
@@ -33,17 +40,16 @@ public class Comment {
     }
 
 
-
-    public Long getPostId() {
-        return postId;
-    }
     public String getUserId() {
         return userId;
     }
+    public Long getPostId() {
+        return postId;
+    }
 
 
-    public void setId(Long id) {
-        this.id = id;
+    public void setCommentId(Long id) {
+        this.commentId = id;
     }
 
     public void setContent(String content) {
@@ -58,11 +64,12 @@ public class Comment {
         this.updatedOn = updatedOn;
     }
 
-    public void setPostId(Long postId) {
-        this.postId = postId;
-    }
+
     public void setUserId(String userId) {
         this.userId = userId;
+    }
+    public void setPostId(Long postId) {
+        this.postId = postId;
     }
 
 }
