@@ -2,7 +2,7 @@ package com.zipcode.group3blog.service;
 
 import com.zipcode.group3blog.dto.LoginRequest;
 import com.zipcode.group3blog.dto.RegisterRequest;
-import com.zipcode.group3blog.model.User;
+import com.zipcode.group3blog.model.Users;
 import com.zipcode.group3blog.repository.UserRepository;
 import com.zipcode.group3blog.security.JwtProvider;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,11 +26,11 @@ public class AuthService {
     JwtProvider jwtProvider;
 
     public void signup(RegisterRequest registerRequest){
-        User newUser = new User();
-        newUser.setUsername(registerRequest.getUsername());
-        newUser.setPassword( encodePassword(registerRequest.getPassword()));
-        newUser.setEmail(registerRequest.getEmail());
-        userRepository.save(newUser);
+        Users newUsers = new Users();
+        newUsers.setUsername(registerRequest.getUsername());
+        newUsers.setPassword( encodePassword(registerRequest.getPassword()));
+        newUsers.setEmail(registerRequest.getEmail());
+        userRepository.save(newUsers);
     }
 
     private String encodePassword(String password) {
