@@ -1,11 +1,10 @@
 package com.zipcode.group3blog.model;
 
-
 import javax.persistence.*;
 
 @Entity
-@Table
-public class User {
+@Table(name = "users")
+public class Users {
 @Id
 @GeneratedValue(strategy = GenerationType.IDENTITY)
 private long id;
