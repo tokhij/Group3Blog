@@ -23,7 +23,7 @@ public class CommentService {
     private CommentRepository commentRepository;
 
     @Transactional
-    public List<CommentDTO> showAllPosts() {
+    public List<CommentDTO> showAllComments() {
         List<Comment> comments = commentRepository.findAll();
         return comments.stream().map(this::mapFromCommentToDTO).collect(toList());
     }
@@ -38,7 +38,7 @@ public class CommentService {
     }
 
     @Transactional
-    public void createPost(CommentDTO commentDTO) {
+    public void createComment(CommentDTO commentDTO) {
         Comment comment = mapFromDTOToComment(commentDTO);
         commentRepository.save(comment);
     }
@@ -55,12 +55,12 @@ public class CommentService {
     }
 
     @Transactional
-    public CommentDTO readSinglePost(Long id) {
+    public CommentDTO readSingleComment(Long id) {
         Comment comment = commentRepository.findById(id).orElseThrow(() -> new CommentNotFoundException("For id " + id));
         return mapFromCommentToDTO(comment);
     }
     @Transactional
-    public void deletePost(CommentDTO commentDTO) {
+    public void deleteComment(CommentDTO commentDTO) {
         Comment comment = mapFromDTOToComment(commentDTO);
         commentRepository.delete(comment);
     }
