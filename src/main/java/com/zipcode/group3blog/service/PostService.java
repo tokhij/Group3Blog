@@ -35,7 +35,8 @@ public class PostService {
 
     @Transactional
     public PostDTO readSinglePost(Long id) {
-        Post post = postRepository.findById(id).orElseThrow(() -> new PostNotFoundException("For id " + id));
+        Post post = postRepository.findById(id).orElseThrow(() ->
+                new PostNotFoundException("For id " + id));
         return mapFromPostToDTO(post);
     }
 
@@ -58,9 +59,11 @@ public class PostService {
         post.setUpdatedOn(Instant.now());
         return post;
     }
+
     @Transactional
-    public void deletePost(PostDTO postDto) {
-        Post post = mapFromDTOToPost(postDto);
+    public void deletePost(Long id) {
+        PostDTO postToDelete = readSinglePost(id);
+        Post post = mapFromDTOToPost(postToDelete);
         postRepository.delete(post);
     }
 

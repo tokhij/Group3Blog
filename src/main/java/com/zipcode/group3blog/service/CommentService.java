@@ -56,12 +56,14 @@ public class CommentService {
 
     @Transactional
     public CommentDTO readSingleComment(Long id) {
-        Comment comment = commentRepository.findById(id).orElseThrow(() -> new CommentNotFoundException("For id " + id));
+        Comment comment = commentRepository.findById(id).orElseThrow(() ->
+                new CommentNotFoundException("For id " + id));
         return mapFromCommentToDTO(comment);
     }
     @Transactional
-    public void deleteComment(CommentDTO commentDTO) {
-        Comment comment = mapFromDTOToComment(commentDTO);
+    public void deleteComment(Long id) {
+        CommentDTO commentToDelete = readSingleComment(id);
+        Comment comment = mapFromDTOToComment(commentToDelete);
         commentRepository.delete(comment);
     }
 }
