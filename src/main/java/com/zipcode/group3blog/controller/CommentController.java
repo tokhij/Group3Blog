@@ -2,6 +2,7 @@ package com.zipcode.group3blog.controller;
 
 import com.zipcode.group3blog.dto.CommentDTO;
 import com.zipcode.group3blog.dto.PostDTO;
+import com.zipcode.group3blog.repository.CommentRepository;
 import com.zipcode.group3blog.service.CommentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -13,18 +14,17 @@ import java.util.List;
 @RestController
 @RequestMapping("/api")
 public class CommentController {
-    // add this into parameter of get/post mapping- /api/{postId}/comments
     @Autowired
     private CommentService commentService;
 
     @PostMapping
     public ResponseEntity createComment(@RequestBody CommentDTO commentDTO){
         commentService.createComment(commentDTO);
-        return new ResponseEntity(HttpStatus.CREATED);
+        return new ResponseEntity(HttpStatus.OK);
     }
 
     @GetMapping("/{postId}/comments")
-    public ResponseEntity<List<CommentDTO>> showAllComments() {
+    public ResponseEntity<List<CommentDTO>> showAllComments(@PathVariable @RequestBody Integer postId) {
         return new ResponseEntity<>(commentService.showAllComments(), HttpStatus.OK);
     }
 
@@ -34,8 +34,8 @@ public class CommentController {
     }
 
     @DeleteMapping("/get/{id}/comments")
-    public ResponseEntity<Boolean> deletePost(@PathVariable @RequestBody CommentDTO commentDTO) {
-        commentService.deleteComment(commentDTO);
+    public ResponseEntity<Boolean> deletePost(@PathVariable @RequestBody Integer commentId) {
+        commentService.deleteComment(commentId);
         return new ResponseEntity(HttpStatus.OK);
     }
 
