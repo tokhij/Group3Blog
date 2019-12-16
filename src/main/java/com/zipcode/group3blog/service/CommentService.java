@@ -1,9 +1,11 @@
 package com.zipcode.group3blog.service;
 
 import com.zipcode.group3blog.dto.CommentDTO;
+import com.zipcode.group3blog.exceptions.CommentNotFoundException;
 import com.zipcode.group3blog.model.Comment;
 import com.zipcode.group3blog.repository.CommentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.userdetails.User;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
@@ -45,13 +47,21 @@ public class CommentService {
         Comment comment = new Comment();
         comment.setContent(commentDTO.getContent());
         comment.setContent(commentDTO.getContent());
-//        Users loggedInUser = authService.getCurrentUser().orElseThrow(() -> new IllegalArgumentException("User Not Found"));
-//       comment.setCreatedOn(Instant.now());
-//        post.setAuthor(loggedInUser.getUsername());
-//        post.setUpdatedOn(Instant.now());
-//        return post;
-        //  }
+        User loggedInUser = authService.getCurrentUser().orElseThrow(() -> new IllegalArgumentException("User Not Found"));
+        comment.setCreatedOn(Instant.now());
+        comment.setUserId(loggedInUser.getUsername());
+        comment.setUpdatedOn(Instant.now());
+        return comment;
+    }
 
-return null;
+    @Transactional
+    public CommentDTO readSinglePost(Long id) {
+        Comment comment = commentRepository.findById(id).orElseThrow(() -> new CommentNotFoundException("For id " + id));
+        return mapFromCommentToDTO(comment);
+    }
+    @Transactional
+    public void deletePost(CommentDTO commentDTO) {
+        Comment comment = mapFromDTOToComment(commentDTO);
+        commentRepository.delete(comment);
     }
 }

@@ -58,4 +58,10 @@ public class PostService {
         post.setUpdatedOn(Instant.now());
         return post;
     }
+    @Transactional
+    public void deletePost(PostDTO postDto) {
+        Post post = mapFromDTOToPost(postDto);
+        postRepository.delete(post);
+    }
+
 }
