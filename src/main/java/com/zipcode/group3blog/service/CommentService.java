@@ -1,39 +1,67 @@
 package com.zipcode.group3blog.service;
 
+import com.zipcode.group3blog.dto.CommentDTO;
+import com.zipcode.group3blog.exceptions.CommentNotFoundException;
 import com.zipcode.group3blog.model.Comment;
 import com.zipcode.group3blog.repository.CommentRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.userdetails.User;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
+import java.time.Instant;
+import java.util.List;
+
+import static java.util.stream.Collectors.toList;
 
 @Service
 public class CommentService {
+    @Autowired
+    private AuthService authService;
+
+    @Autowired
     private CommentRepository commentRepository;
-    public CommentService(CommentRepository commentRepository){
-        this.commentRepository = commentRepository;
-    }
+
     @Transactional
-    public Iterable<Comment> index() {
-        return commentRepository.findAll();
+    public List<CommentDTO> showAllComments() {
+        List<Comment> comments = commentRepository.findAll();
+        return comments.stream().map(this::mapFromCommentToDTO).collect(toList());
     }
-    @Transactional
-    public Comment showComment(Long commentId) {
-        return commentRepository.findById(commentId).get();
-    }
-    @Transactional
-    public Comment createComment(Comment comment) {
-        return commentRepository.save(comment);
+
+    private CommentDTO mapFromCommentToDTO(Comment comment) {
+        CommentDTO commentDTO = new CommentDTO();
+        commentDTO.setCommentId(commentDTO.getCommentId());
+        commentDTO.setContent(commentDTO.getContent());
+        commentDTO.setContent(comment.getContent());
+        commentDTO.setUserId(comment.getUserId());
+        return commentDTO;
     }
 
     @Transactional
-    public Comment updateComment(Long commentId, Comment newCommentData) {
-        Comment originalComment = commentRepository.findById(commentId).get();
-        originalComment.setContent(newCommentData.getContent());
-        return commentRepository.save(originalComment);
+    public void createComment(CommentDTO commentDTO) {
+        Comment comment = mapFromDTOToComment(commentDTO);
+        commentRepository.save(comment);
+    }
+
+    private Comment mapFromDTOToComment(CommentDTO commentDTO) {
+        Comment comment = new Comment();
+        comment.setContent(commentDTO.getContent());
+        comment.setContent(commentDTO.getContent());
+        User loggedInUser = authService.getCurrentUser().orElseThrow(() -> new IllegalArgumentException("User Not Found"));
+        comment.setCreatedOn(Instant.now());
+        comment.setUserId(loggedInUser.getUsername());
+        comment.setUpdatedOn(Instant.now());
+        return comment;
+    }
+
+    @Transactional
+    public CommentDTO readSingleComment(Long id) {
+        Comment comment = commentRepository.findById(id).orElseThrow(() -> new CommentNotFoundException("For id " + id));
+        return mapFromCommentToDTO(comment);
     }
     @Transactional
-    public Boolean deleteComment(Long id) {
-        commentRepository.deleteById(id);
-        return true;
+    public void deleteComment(CommentDTO commentDTO) {
+        Comment comment = mapFromDTOToComment(commentDTO);
+        commentRepository.delete(comment);
     }
 }
