@@ -3,6 +3,7 @@ package com.zipcode.group3blog.model;
 import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
 import java.time.Instant;
+
 @Entity
 public class Comment {
     private Long id;
