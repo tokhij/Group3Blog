@@ -5,7 +5,7 @@ import javax.persistence.ManyToOne;
 import java.time.Instant;
 @Entity
 public class Comment {
-    private Long id;
+    private Long commentId;
     private String content;
     private Instant createdOn;
     private Instant updatedOn;
@@ -15,8 +15,8 @@ public class Comment {
 
 
 
-    public Long getId() {
-        return id;
+    public Long getCommentId() {
+        return commentId;
     }
 
     public String getContent() {
@@ -32,17 +32,16 @@ public class Comment {
     }
 
 
-
-    public Long getPostId() {
-        return postId;
-    }
     public String getUserId() {
         return userId;
     }
+    public Long getPostId() {
+        return postId;
+    }
 
 
-    public void setId(Long id) {
-        this.id = id;
+    public void setCommentId(Long id) {
+        this.commentId = id;
     }
 
     public void setContent(String content) {
@@ -57,11 +56,12 @@ public class Comment {
         this.updatedOn = updatedOn;
     }
 
-    public void setPostId(Long postId) {
-        this.postId = postId;
-    }
+
     public void setUserId(String userId) {
         this.userId = userId;
+    }
+    public void setPostId(Long postId) {
+        this.postId = postId;
     }
 
 }
