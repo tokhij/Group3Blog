@@ -33,6 +33,7 @@ public class PostController {
         postService.createPost(postDto);
         return new ResponseEntity(HttpStatus.OK);
     }
+
     @Valid
     @GetMapping("/all")
     public ResponseEntity<Page<Post>> showAllPosts(Pageable pageable) {

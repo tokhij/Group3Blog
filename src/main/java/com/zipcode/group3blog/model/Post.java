@@ -4,6 +4,7 @@ import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotEmpty;
 import java.time.Instant;
+import java.util.List;
 
 @Entity
 @Table
@@ -24,6 +25,8 @@ private Instant updatedOn;
 @Column
 @NotBlank
 private String author;
+@OneToMany(cascade = CascadeType.ALL)
+private List<Comment> comments;
 
     public Long getId() {
         return id;
@@ -71,5 +74,13 @@ private String author;
 
     public void setAuthor(String author) {
         this.author = author;
+    }
+
+    public List<Comment> getComments() {
+        return comments;
+    }
+
+    public void setComments(List<Comment> comments) {
+        this.comments = comments;
     }
 }

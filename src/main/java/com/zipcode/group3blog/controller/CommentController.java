@@ -16,6 +16,8 @@ import java.util.List;
 public class CommentController {
     @Autowired
     private CommentService commentService;
+    @Autowired
+    private CommentRepository commentRepository;
 
     @PostMapping
     public ResponseEntity createComment(@RequestBody CommentDTO commentDTO){
@@ -34,12 +36,12 @@ public class CommentController {
     }
 
     @DeleteMapping("/get/{id}/comments")
-    public ResponseEntity<Boolean> deletePost(@PathVariable @RequestBody Integer commentId) {
-        commentService.deleteComment(commentId);
-        return new ResponseEntity(HttpStatus.OK);
+    public ResponseEntity<Boolean> deletePost(@PathVariable @RequestBody Long commentId) {
+        commentRepository.deleteById(commentId);
+        return new ResponseEntity<>(HttpStatus.OK);
     }
 
-//    @PostMapping
+//    @PutMapping
 //    public ResponseEntity updateComment(@RequestBody CommentDTO commentDTO){
 //        commentService.updateComment(commentDTO);
 //        return new ResponseEntity(HttpStatus.OK);

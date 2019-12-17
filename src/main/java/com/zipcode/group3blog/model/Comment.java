@@ -5,6 +5,7 @@ import javax.validation.constraints.NotBlank;
 import java.time.Instant;
 
 @Entity
+@Table
 public class Comment {
     @Id
     @GeneratedValue
@@ -18,10 +19,8 @@ public class Comment {
     @Column
     @NotBlank
     private String userId;
-    @ManyToOne
-    private Long postId;
-
-
+    @ManyToOne(cascade = CascadeType.ALL)
+    private Post post;
 
     public Long getCommentId() {
         return commentId;
@@ -39,14 +38,9 @@ public class Comment {
         return updatedOn;
     }
 
-
     public String getUserId() {
         return userId;
     }
-    public Long getPostId() {
-        return postId;
-    }
-
 
     public void setCommentId(Long id) {
         this.commentId = id;
@@ -64,12 +58,15 @@ public class Comment {
         this.updatedOn = updatedOn;
     }
 
-
     public void setUserId(String userId) {
         this.userId = userId;
     }
-    public void setPostId(Long postId) {
-        this.postId = postId;
+
+    public Post getPost() {
+        return post;
     }
 
+    public void setPost(Post post) {
+        this.post = post;
+    }
 }
