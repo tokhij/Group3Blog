@@ -3,6 +3,7 @@ package com.zipcode.group3blog.model;
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import java.time.Instant;
+
 @Entity
 public class Comment {
     @Id
