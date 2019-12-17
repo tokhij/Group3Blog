@@ -33,7 +33,7 @@ public class CommentService {
         commentDTO.setCommentId(commentDTO.getCommentId());
         commentDTO.setContent(commentDTO.getContent());
         commentDTO.setContent(comment.getContent());
-        commentDTO.setUserId(comment.getUserId());
+        commentDTO.setUsername(comment.getUserId());
         return commentDTO;
     }
 

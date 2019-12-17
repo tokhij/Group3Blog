@@ -12,30 +12,30 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api")
+@RequestMapping("/api/comments") //should there be a "/post" in this
 public class CommentController {
     @Autowired
     private CommentService commentService;
     @Autowired
     private CommentRepository commentRepository;
 
-    @PostMapping
+    @PostMapping("/{postId}/postComment")
     public ResponseEntity createComment(@RequestBody CommentDTO commentDTO){
         commentService.createComment(commentDTO);
         return new ResponseEntity(HttpStatus.OK);
     }
 
-    @GetMapping("/{postId}/comments")
+    @GetMapping("/getAll")
     public ResponseEntity<List<CommentDTO>> showAllComments(@PathVariable @RequestBody Integer postId) {
         return new ResponseEntity<>(commentService.showAllComments(), HttpStatus.OK);
     }
 
-    @GetMapping("/get/{id}/comments")
+    @GetMapping("/get/{id}")
     public ResponseEntity<CommentDTO> getSingleComment(@PathVariable @RequestBody Long id) {
         return new ResponseEntity<>(commentService.readSingleComment(id), HttpStatus.OK);
     }
 
-    @DeleteMapping("/get/{id}/comments")
+    @DeleteMapping("/get/{id}")
     public ResponseEntity<Boolean> deletePost(@PathVariable @RequestBody Long commentId) {
         commentRepository.deleteById(commentId);
         return new ResponseEntity<>(HttpStatus.OK);

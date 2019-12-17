@@ -28,7 +28,7 @@ public class PostController {
         this.postRepository = postRepository;
     }
 
-    @PostMapping
+    @PostMapping("/postMessage")
     public ResponseEntity createPost(@RequestBody PostDTO postDto) {
         postService.createPost(postDto);
         return new ResponseEntity(HttpStatus.OK);
