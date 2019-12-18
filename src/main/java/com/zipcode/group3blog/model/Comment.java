@@ -20,6 +20,7 @@ public class Comment {
     @NotBlank
     private String userId;
     @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn
     private Post post;
 
     public Long getCommentId() {

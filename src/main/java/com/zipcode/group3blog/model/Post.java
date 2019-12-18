@@ -25,7 +25,8 @@ private Instant updatedOn;
 @Column
 @NotBlank
 private String author;
-@OneToMany(cascade = CascadeType.ALL)
+@OneToMany(fetch = FetchType.EAGER,mappedBy="post",cascade = CascadeType.ALL)
+@JoinColumn
 private List<Comment> comments;
 
     public Long getId() {

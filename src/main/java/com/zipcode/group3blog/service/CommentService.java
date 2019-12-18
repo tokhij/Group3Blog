@@ -27,6 +27,10 @@ public class CommentService {
         List<Comment> comments = commentRepository.findAll();
         return comments.stream().map(this::mapFromCommentToDTO).collect(toList());
     }
+    public Comment getCommentFromSpecificPost(Long postId){
+        List<Comment> comments = commentRepository.findAll();
+        return (Comment) comments.stream().map(this::mapFromCommentToDTO).filter(comment -> comment.getPostId() == postId).collect(toList());
+    }
 
     private CommentDTO mapFromCommentToDTO(Comment comment) {
         CommentDTO commentDTO = new CommentDTO();
