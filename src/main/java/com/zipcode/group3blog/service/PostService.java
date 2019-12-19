@@ -60,11 +60,11 @@ public class PostService {
         return post;
     }
 
-//    @Transactional
-//    public void deletePost(Long id) {
-//        PostDTO postToDelete = readSinglePost(id);
-//        Post post = mapFromDTOToPost(postToDelete);
-//        postRepository.delete(post);
-//    }
+    @Transactional
+    public void deletePost(Long id) {
+        PostDTO postToDelete = readSinglePost(id);
+        Post post = mapFromDTOToPost(postToDelete);
+        postRepository.delete(post);
+    }
 
 }
