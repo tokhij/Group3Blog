@@ -12,8 +12,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
-import java.util.List;
-import java.util.Optional;
+
 
 @RestController
 @RequestMapping("/api/posts")
@@ -47,7 +46,7 @@ public class PostController {
 
     @DeleteMapping("/get/{id}")
     public ResponseEntity<Boolean> deletePost(@PathVariable Long id) {
-        postRepository.deleteById(id);
+        postService.deletePost(id);
         return new ResponseEntity<>(HttpStatus.OK);
         }
     }
