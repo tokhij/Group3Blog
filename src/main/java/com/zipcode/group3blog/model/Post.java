@@ -4,14 +4,13 @@ import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotEmpty;
 import java.time.Instant;
-import java.util.List;
 
 @Entity
 @Table
 public class Post {
 @Id
 @GeneratedValue(strategy = GenerationType.IDENTITY)
-private Long id;
+private Long postId;
 @Column
 private String title;
 @Lob
@@ -24,16 +23,14 @@ private Instant createdOn;
 private Instant updatedOn;
 @Column
 @NotBlank
-private String author;
-@OneToMany(cascade = CascadeType.ALL)
-private List<Comment> comments;
+private String username;
 
-    public Long getId() {
-        return id;
+    public Long getPostId() {
+        return postId;
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    public void setPostId(Long postId) {
+        this.postId = postId;
     }
 
     public String getTitle() {
@@ -68,19 +65,12 @@ private List<Comment> comments;
         this.updatedOn = updatedOn;
     }
 
-    public String getAuthor() {
-        return author;
+    public String getUsername() {
+        return username;
     }
 
-    public void setAuthor(String author) {
-        this.author = author;
+    public void setUsername(String username) {
+        this.username = username;
     }
 
-    public List<Comment> getComments() {
-        return comments;
-    }
-
-    public void setComments(List<Comment> comments) {
-        this.comments = comments;
-    }
 }

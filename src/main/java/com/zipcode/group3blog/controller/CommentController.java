@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api")
+@RequestMapping("/api/comments")
 public class CommentController {
     @Autowired
     private CommentService commentService;
@@ -25,17 +25,22 @@ public class CommentController {
         return new ResponseEntity(HttpStatus.OK);
     }
 
-    @GetMapping("/{postId}/comments")
-    public ResponseEntity<List<CommentDTO>> showAllComments(@PathVariable @RequestBody Integer postId) {
+    @GetMapping
+    public ResponseEntity<List<CommentDTO>> showAllComments() {
         return new ResponseEntity<>(commentService.showAllComments(), HttpStatus.OK);
     }
 
-    @GetMapping("/get/{id}/comments")
+    @GetMapping("/posts/{postId}")
+    public ResponseEntity<List<CommentDTO>> showAllCommentsByPost(@PathVariable @RequestBody Long postId) {
+        return new ResponseEntity<>(commentService.showAllCommentsByPost(postId), HttpStatus.OK);
+    }
+
+    @GetMapping("/{id}")
     public ResponseEntity<CommentDTO> getSingleComment(@PathVariable @RequestBody Long id) {
         return new ResponseEntity<>(commentService.readSingleComment(id), HttpStatus.OK);
     }
 
-    @DeleteMapping("/get/{id}/comments")
+    @DeleteMapping("/{id}")
     public ResponseEntity<Boolean> deletePost(@PathVariable @RequestBody Long commentId) {
         commentRepository.deleteById(commentId);
         return new ResponseEntity<>(HttpStatus.OK);
