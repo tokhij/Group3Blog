@@ -1,5 +1,7 @@
 package com.zipcode.group3blog.model;
 
+import org.hibernate.annotations.Type;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotEmpty;
@@ -15,6 +17,7 @@ private Long postId;
 private String title;
 @Lob
 @Column
+@Type(type = "org.hibernate.type.TextType")
 @NotEmpty
 private String content;
 @Column

@@ -18,7 +18,6 @@ import java.util.Optional;
 @RestController
 @RequestMapping("/api/posts")
 public class PostController {
-
     @Autowired
     private PostService postService;
     @Autowired
