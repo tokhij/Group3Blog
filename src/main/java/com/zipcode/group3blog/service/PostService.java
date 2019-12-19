@@ -42,10 +42,10 @@ public class PostService {
 
     private PostDTO mapFromPostToDTO(Post post) {
         PostDTO postDTO = new PostDTO();
-        postDTO.setId(post.getId());
+        postDTO.setPostId(post.getPostId());
         postDTO.setTitle(post.getTitle());
         postDTO.setContent(post.getContent());
-        postDTO.setUsername(post.getAuthor());
+        postDTO.setUsername(post.getUsername());
         return postDTO;
     }
 
@@ -55,7 +55,7 @@ public class PostService {
         post.setContent(postDTO.getContent());
         User loggedInUser = authService.getCurrentUser().orElseThrow(() -> new IllegalArgumentException("Users Not Found"));
         post.setCreatedOn(Instant.now());
-        post.setAuthor(loggedInUser.getUsername());
+        post.setUsername(loggedInUser.getUsername());
         post.setUpdatedOn(Instant.now());
         return post;
     }

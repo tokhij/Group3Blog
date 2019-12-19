@@ -1,17 +1,17 @@
 package com.zipcode.group3blog.dto;
 
 public class PostDTO {
-private Long id;
+private Long postId;
 private String title;
 private String content;
 private String username;
 
-    public Long getId() {
-        return id;
+    public Long getPostId() {
+        return postId;
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    public void setPostId(Long postId) {
+        this.postId = postId;
     }
 
     public String getTitle() {

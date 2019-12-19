@@ -8,7 +8,7 @@ import java.time.Instant;
 @Table
 public class Comment {
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long commentId;
     @Column
     private String content;
@@ -18,9 +18,8 @@ public class Comment {
     private Instant updatedOn;
     @Column
     @NotBlank
-    private String userId;
-    @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn
+    private String username;
+    @ManyToOne
     private Post post;
 
     public Long getCommentId() {
@@ -39,8 +38,8 @@ public class Comment {
         return updatedOn;
     }
 
-    public String getUserId() {
-        return userId;
+    public String getUsername() {
+        return username;
     }
 
     public void setCommentId(Long id) {
@@ -59,8 +58,8 @@ public class Comment {
         this.updatedOn = updatedOn;
     }
 
-    public void setUserId(String userId) {
-        this.userId = userId;
+    public void setUsername(String username) {
+        this.username = username;
     }
 
     public Post getPost() {
@@ -69,5 +68,9 @@ public class Comment {
 
     public void setPost(Post post) {
         this.post = post;
+    }
+
+    public void getPostId () {
+        this.post.getPostId();
     }
 }
