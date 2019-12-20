@@ -24,7 +24,9 @@ Base cloud URL:
 ------------------
 
 Base endpoint:
+
 /api/auth
+
 Methods accepted: None
 
 /signup
