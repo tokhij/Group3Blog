@@ -19,6 +19,7 @@ import java.util.Optional;
 @RestController
 @RequestMapping("/api/posts")
 public class PostController {
+
     @Autowired
     private PostService postService;
     @Autowired
@@ -35,36 +36,27 @@ public class PostController {
     }
 
     @Valid
-    @GetMapping("/all")
+    @GetMapping
     public ResponseEntity<Page<Post>> showAllPosts(Pageable pageable) {
-        Page<Post> allPosts = postRepository.findAllBy(pageable);
-        return new ResponseEntity<>(allPosts, HttpStatus.OK);
+        Page<PostDTO> allPosts = postService.showAllPosts(pageable);
+        return new ResponseEntity(allPosts, HttpStatus.OK);
     }
 
-    @GetMapping("/get/{id}")
+    @GetMapping("/{id}")
     public ResponseEntity<PostDTO> getSinglePost(@PathVariable @RequestBody Long id) {
         return new ResponseEntity<>(postService.readSinglePost(id), HttpStatus.OK);
     }
 
-    @DeleteMapping("/get/{id}")
+    @DeleteMapping("/delete/{id}")
     public ResponseEntity<Boolean> deletePost(@PathVariable Long id) {
         postService.deletePost(id);
         return new ResponseEntity<>(HttpStatus.OK);
         }
-//        @PutMapping("/get/{id}")
-//    public ResponseEntity<PostDTO>updatePost(@PathVariable @RequestBody Long id, PostDTO postDTO){
-//        postService.updatePost(id, postDTO);
-//        return new ResponseEntity<>(HttpStatus.OK);
-//        }
 
-    @PutMapping("/get/{id}")
-    public ResponseEntity<Post> updatePost(@PathVariable @RequestBody Long id, PostDTO postDTO) throws PostNotFoundException {
-        Optional<Post> post = postRepository.findById(id);
-        Post post2 = post.get();
-        post2.setTitle(postDTO.getTitle());
-        post2.setContent(postDTO.getContent());
-        Post updatedPost = postRepository.save(post2);
-        return ResponseEntity.ok(updatedPost);
+    @PutMapping("/update")
+    public ResponseEntity<Post> updatePost(@RequestBody PostDTO postDTO) throws PostNotFoundException {
+        postService.updatePost(postDTO);
+        return new ResponseEntity<>(HttpStatus.OK);
     }
-    }
+}
 

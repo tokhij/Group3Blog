@@ -66,15 +66,14 @@ public class PostService {
         Post post = mapFromDTOToPost(postToDelete);
         postRepository.delete(post);
     }
-//    @Transactional
-//    public void updatePost(Long id, PostDTO newPostDTO) {
-//        PostDTO postDTO = readSinglePost(id);
-//        Post post = mapFromDTOToPost(postDTO);
-//        post.setContent(newPostDTO.getContent());
-//        post.setTitle(newPostDTO.getTitle());
-//        post.setUpdatedOn(Instant.now());
-//        postRepository.save(post);
 
-//    }
+    @Transactional
+    public void updatePost(PostDTO newPostDTO) {
+        Post post = postRepository.getOne(newPostDTO.getPostId());
+        post.setContent(newPostDTO.getContent());
+        post.setTitle(newPostDTO.getTitle());
+        post.setUpdatedOn(Instant.now());
+        postRepository.save(post);
+    }
 
 }
