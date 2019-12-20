@@ -140,9 +140,11 @@ Delete comment with provided comment ID.
 ------------------
 
 /post/{postId}
+
 Methods accepted: GET
 
 #####GET
+
 Returns comments associated with provided post ID.
 
 
