@@ -46,17 +46,17 @@ JSON Payload:
 
 ------------------
 
-### Post Endpoints:
+## Post Endpoints:
 
 ------------------
 
 /api/posts
 Methods accepted: GET, POST, PUT
 
-#####GET
+###GET
 Returns paginated list of all posts. Dynamically paged using URL params.
 
-#####POST:
+###POST:
 Creates a new post.
 JSON Payload:
 {
@@ -65,7 +65,7 @@ JSON Payload:
 "username": "authenticatedusernamehere"
 }
 
-#####PUT:
+###PUT:
 Updates given post. Throws PostNotFoundException if post provided does not exist.
 JSON Payload:
 {
@@ -80,7 +80,7 @@ JSON Payload:
 /api/posts/:postId
 Methods accepted: GET
 
-#####GET
+###GET
 Return post with provided post ID.
 
 ------------------
@@ -88,22 +88,22 @@ Return post with provided post ID.
 /api/posts/delete/:postId
 Methods accepted: DELETE
 
-#####DELETE:
+###DELETE:
 Delete post with provided post ID.
 
 ------------------
 
-# Comment Endpoints
+## Comment Endpoints
 
 ------------------
 
 /api/comments
 Methods accepted: GET, POST, PUT
 
-#####GET
+###GET
 Returns paginated list of all comments. Dynamically paged using URL params.
 
-#####POST:
+###POST:
 Creates a new comment.
 JSON Payload:
 {
@@ -112,7 +112,7 @@ JSON Payload:
 "username": "authenticatedusernamehere"
 }
 
-#####PUT:
+###PUT:
 Updates given comments. Throws CommentNotFoundException if comment provided does not exist.
 JSON Payload:
 {
@@ -126,7 +126,7 @@ JSON Payload:
 /api/comments/:commentId
 Methods accepted: GET
 
-#####GET
+###GET
 Return comment with provided comment ID.
 
 ------------------
@@ -134,7 +134,7 @@ Return comment with provided comment ID.
 /api/comments/delete/:commentId
 Methods accepted: DELETE
 
-#####DELETE:
+###DELETE:
 Delete comment with provided comment ID.
 
 ------------------
@@ -143,7 +143,7 @@ Delete comment with provided comment ID.
 
 Methods accepted: GET
 
-#####GET
+###GET
 
 Returns comments associated with provided post ID.
 
