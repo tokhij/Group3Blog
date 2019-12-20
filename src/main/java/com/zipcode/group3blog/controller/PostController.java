@@ -31,7 +31,7 @@ public class PostController {
     @Valid
     @GetMapping
     public ResponseEntity<Page<Post>> showAllPosts(Pageable pageable) {
-        Page<Post> allPosts = postRepository.getPostPages(pageable);
+        Page<Post> allPosts = postRepository.findAllBy(pageable);
         return new ResponseEntity<>(allPosts, HttpStatus.OK);
     }
 

@@ -32,7 +32,7 @@ public class CommentController {
     @Valid
     @GetMapping
     public ResponseEntity<Page<Comment>> showAllComments(Pageable pageable) {
-        Page<Comment> allComments = commentRepository.getCommentPages(pageable);
+        Page<Comment> allComments = commentRepository.findAllBy(pageable);
         return new ResponseEntity<>(allComments, HttpStatus.OK);
     }
 

@@ -11,6 +11,6 @@ import javax.transaction.Transactional;
 @Transactional
 @Repository
 public interface PostRepository extends JpaRepository<Post, Long> {
-   Page<Post> getPostPages(Pageable pageable);
+   Page<Post> findAllBy(Pageable pageable);
 
 }

@@ -12,7 +12,7 @@ import java.util.List;
 @Repository
 public interface CommentRepository extends JpaRepository<Comment, Long> {
     List<Comment> findByPost_PostId(Long postId);
-    Page<Comment> getCommentPages(Pageable pageable);
+    Page<Comment> findAllBy(Pageable pageable);
 
 
 }
