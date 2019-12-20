@@ -65,9 +65,7 @@ public class PostService {
 
     @Transactional
     public void deletePost(Long id) {
-        PostDTO postToDelete = readSinglePost(id);
-        Post post = mapFromDTOToPost(postToDelete);
-        postRepository.delete(post);
+        postRepository.deleteById(id);
     }
 
     @Transactional
