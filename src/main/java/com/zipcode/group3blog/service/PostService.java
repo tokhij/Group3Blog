@@ -24,7 +24,9 @@ public class PostService {
     @Transactional
     public List<PostDTO> showAllPosts() {
         List<Post> posts = postRepository.findAll();
-        return posts.stream().map(this::mapFromPostToDTO).collect(toList());
+        return posts.stream()
+                .map(this::mapFromPostToDTO)
+                .collect(toList());
     }
 
     @Transactional

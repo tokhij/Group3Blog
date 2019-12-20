@@ -38,8 +38,8 @@ public class PostController {
     @Valid
     @GetMapping
     public ResponseEntity<Page<Post>> showAllPosts(Pageable pageable) {
-        Page<PostDTO> allPosts = postService.showAllPosts(pageable);
-        return new ResponseEntity(allPosts, HttpStatus.OK);
+        Page<Post> allPosts = postRepository.findAllBy(pageable);
+        return new ResponseEntity<>(allPosts, HttpStatus.OK);
     }
 
     @GetMapping("/{id}")
