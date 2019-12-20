@@ -77,9 +77,7 @@ public class CommentService {
 
     @Transactional
     public void deleteComment(Long id) {
-        CommentDTO commentToDelete = readSingleComment(id);
-        Comment comment = mapFromDTOToComment(commentToDelete);
-        commentRepository.delete(comment);
+        commentRepository.deleteById(id);
     }
 
     @Transactional
