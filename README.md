@@ -19,7 +19,7 @@ To get started:
 Base local URL: localhost:4000
 Base cloud URL:
 
-# Authentication Endpoints:
+## Authentication Endpoints:
 
 ------------------
 
