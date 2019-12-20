@@ -11,10 +11,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
 import javax.validation.Valid;
-import java.util.Optional;
-
 
 @RestController
 @RequestMapping("/api/posts")
@@ -23,22 +20,18 @@ public class PostController {
     @Autowired
     private PostService postService;
     @Autowired
-    PostRepository postRepository;
-    @Autowired
-    public PostController(PostRepository postRepository) {
-        this.postRepository = postRepository;
-    }
+    private PostRepository postRepository;
 
     @PostMapping
-    public ResponseEntity createPost(@RequestBody PostDTO postDto) {
-        postService.createPost(postDto);
+    public ResponseEntity createPost(@RequestBody PostDTO postDTO) {
+        postService.createPost(postDTO);
         return new ResponseEntity(HttpStatus.OK);
     }
 
     @Valid
     @GetMapping
     public ResponseEntity<Page<Post>> showAllPosts(Pageable pageable) {
-        Page<Post> allPosts = postRepository.findAllBy(pageable);
+        Page<Post> allPosts = postRepository.getPostPages(pageable);
         return new ResponseEntity<>(allPosts, HttpStatus.OK);
     }
 

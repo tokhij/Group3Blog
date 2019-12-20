@@ -16,6 +16,7 @@ import static java.util.stream.Collectors.toList;
 
 @Service
 public class PostService {
+
     @Autowired
     private AuthService authService;
     @Autowired
