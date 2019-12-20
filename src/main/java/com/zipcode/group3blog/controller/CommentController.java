@@ -52,7 +52,7 @@ public class CommentController {
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
-    @PutMapping("/update")
+    @PutMapping
     public ResponseEntity updateComment(@RequestBody CommentDTO commentDTO){
         commentService.updateComment(commentDTO);
         return new ResponseEntity(HttpStatus.OK);

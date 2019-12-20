@@ -46,7 +46,7 @@ public class PostController {
         return new ResponseEntity<>(HttpStatus.OK);
         }
 
-    @PutMapping("/update")
+    @PutMapping
     public ResponseEntity<Post> updatePost(@RequestBody PostDTO postDTO) throws PostNotFoundException {
         postService.updatePost(postDTO);
         return new ResponseEntity<>(HttpStatus.OK);
