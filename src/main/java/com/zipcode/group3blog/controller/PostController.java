@@ -35,14 +35,14 @@ public class PostController {
         return new ResponseEntity<>(allPosts, HttpStatus.OK);
     }
 
-    @GetMapping("/{id}")
-    public ResponseEntity<PostDTO> getSinglePost(@PathVariable @RequestBody Long id) {
-        return new ResponseEntity<>(postService.readSinglePost(id), HttpStatus.OK);
+    @GetMapping("/{postId}")
+    public ResponseEntity<PostDTO> getSinglePost(@PathVariable @RequestBody Long postId) {
+        return new ResponseEntity<>(postService.readSinglePost(postId), HttpStatus.OK);
     }
 
-    @DeleteMapping("/delete/{id}")
-    public ResponseEntity<Boolean> deletePost(@PathVariable Long id) {
-        postService.deletePost(id);
+    @DeleteMapping("/delete/{postId}")
+    public ResponseEntity<Boolean> deletePost(@PathVariable Long postId) {
+        postService.deletePost(postId);
         return new ResponseEntity<>(HttpStatus.OK);
         }
 

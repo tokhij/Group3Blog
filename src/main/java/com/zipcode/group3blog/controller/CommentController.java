@@ -41,9 +41,9 @@ public class CommentController {
         return new ResponseEntity<>(commentService.showAllCommentsByPost(postId), HttpStatus.OK);
     }
 
-    @GetMapping("/{id}")
-    public ResponseEntity<CommentDTO> getSingleComment(@PathVariable @RequestBody Long id) {
-        return new ResponseEntity<>(commentService.readSingleComment(id), HttpStatus.OK);
+    @GetMapping("/{commentId}")
+    public ResponseEntity<CommentDTO> getSingleComment(@PathVariable @RequestBody Long commentId) {
+        return new ResponseEntity<>(commentService.readSingleComment(commentId), HttpStatus.OK);
     }
 
     @DeleteMapping("/delete/{commentId}")
