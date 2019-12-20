@@ -17,7 +17,7 @@ To get started:
 7. You may now using any of the actuator, post, or comment endpoints defined below
 
 Base local URL: localhost:4000
-Base cloud URL:
+Base cloud URL: https://zcw-group3blogproject.cfapps.io/
 
 ## Authentication Endpoints:
 
