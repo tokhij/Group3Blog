@@ -16,6 +16,7 @@ import static java.util.stream.Collectors.toList;
 
 @Service
 public class PostService {
+
     @Autowired
     private AuthService authService;
     @Autowired
@@ -24,7 +25,9 @@ public class PostService {
     @Transactional
     public List<PostDTO> showAllPosts() {
         List<Post> posts = postRepository.findAll();
-        return posts.stream().map(this::mapFromPostToDTO).collect(toList());
+        return posts.stream()
+                .map(this::mapFromPostToDTO)
+                .collect(toList());
     }
 
     @Transactional
@@ -60,11 +63,18 @@ public class PostService {
         return post;
     }
 
-//    @Transactional
-//    public void deletePost(Long id) {
-//        PostDTO postToDelete = readSinglePost(id);
-//        Post post = mapFromDTOToPost(postToDelete);
-//        postRepository.delete(post);
-//    }
+    @Transactional
+    public void deletePost(Long id) {
+        postRepository.deleteById(id);
+    }
+
+    @Transactional
+    public void updatePost(PostDTO newPostDTO) {
+        Post post = postRepository.getOne(newPostDTO.getPostId());
+        post.setContent(newPostDTO.getContent());
+        post.setTitle(newPostDTO.getTitle());
+        post.setUpdatedOn(Instant.now());
+        postRepository.save(post);
+    }
 
 }

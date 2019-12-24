@@ -1,8 +1,10 @@
 package com.zipcode.group3blog.service;
 
 import com.zipcode.group3blog.dto.CommentDTO;
+import com.zipcode.group3blog.dto.PostDTO;
 import com.zipcode.group3blog.exceptions.CommentNotFoundException;
 import com.zipcode.group3blog.model.Comment;
+import com.zipcode.group3blog.model.Post;
 import com.zipcode.group3blog.repository.CommentRepository;
 import com.zipcode.group3blog.repository.PostRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,6 +19,7 @@ import static java.util.stream.Collectors.toList;
 
 @Service
 public class CommentService {
+
     @Autowired
     private AuthService authService;
 
@@ -74,8 +77,14 @@ public class CommentService {
 
     @Transactional
     public void deleteComment(Long id) {
-        CommentDTO commentToDelete = readSingleComment(id);
-        Comment comment = mapFromDTOToComment(commentToDelete);
-        commentRepository.delete(comment);
+        commentRepository.deleteById(id);
+    }
+
+    @Transactional
+    public void updateComment(CommentDTO newCommentDTO) {
+        Comment comment = commentRepository.getOne(newCommentDTO.getCommentId());
+        comment.setContent(newCommentDTO.getContent());
+        comment.setUpdatedOn(Instant.now());
+        commentRepository.save(comment);
     }
 }
